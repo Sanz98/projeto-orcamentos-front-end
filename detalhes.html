@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Orçamento</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <nav style="background: #333; color: white; padding: 15px; margin-bottom: 30px;">
+        <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.2rem; font-weight: bold;">🛠️ Sistema Marcenaria</span>
+            <a href="dashboard.html" style="color: white; text-decoration: none; font-size: 0.9rem;">← Voltar ao Painel</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="flex-between">
+            <h2 id="tituloPagina" style="margin: 0;">Carregando detalhes...</h2>
+            
+            <div class="flex-row">
+                <button onclick="deletarOrcamentoInteiro()" class="btn-danger" style="width: auto; padding: 8px 15px;">
+                    <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">delete</span> Excluir Orçamento
+                </button>
+                <button onclick="window.location.href='dashboard.html'" class="btn-secondary" style="width: auto; padding: 8px 15px;">
+                    Voltar
+                </button>
+            </div>
+        </div>
+        <hr>
+
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; border: 1px solid #e9ecef;">
+            <div class="flex-row" style="align-items: flex-start;">
+                
+                <div style="flex: 1;">
+                    <label style="font-weight: bold; display: block; margin-bottom: 5px;">Status do Projeto:</label>
+                    <select id="selectStatus" onchange="atualizarStatus()" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc; width: 200px; font-weight: bold;">
+                        <option value="Em Analise">Em Análise</option>
+                        <option value="Aprovado">Aprovado</option>
+                        <option value="Rejeitado">Rejeitado</option>
+                    </select>
+
+                    <div style="margin-top: 15px; font-size: 0.95rem; color: #555;">
+                        <p>📅 <strong>Criado em:</strong> <span id="detalheData">...</span></p>
+                        <p>🚚 <strong>Prazo de Entrega:</strong> <span id="detalhePrazo">...</span></p>
+                    </div>
+                </div>
+
+                <div style="flex: 1; text-align: right;">
+                    <span style="font-size: 0.9rem; color: #666; text-transform: uppercase; letter-spacing: 1px;">Valor Total</span>
+                    <div id="detalheTotal" style="font-size: 2.5rem; color: #28a745; font-weight: 800; margin-top: 5px;">
+                        R$ 0,00
+                    </div>
+                </div>
+            </div>
+            
+            <hr style="margin: 15px 0; border-color: #ddd;">
+            
+            <div>
+                <strong>Observações:</strong>
+                <p id="detalheObs" style="color: #666; font-style: italic; margin-top: 5px;">Nenhuma observação registrada.</p>
+            </div>
+        </div>
+
+        <div class="flex-between" style="margin-top: 40px; margin-bottom: 15px;">
+            <h3>📦 Itens do Projeto</h3>
+            
+            <button id="btnAdicionarItem" onclick="abrirModalItem()" class="btn-primary" style="width: auto; padding: 8px 15px;">
+                + Adicionar Item
+            </button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Ambiente</th>
+                    <th style="width: 30%;">Descrição</th>
+                    <th style="width: 10%; text-align: center;">Qtd</th>
+                    <th style="width: 15%;">Valor Unit.</th>
+                    <th style="width: 15%;">Subtotal</th>
+                    <th style="width: 5%; text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaItens">
+                <tr><td colspan="6" style="text-align: center; padding: 20px;">Carregando itens...</td></tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 40px; text-align: right;">
+            <button onclick="window.print()" class="btn-primary" style="width: auto;">
+                <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">print</span> Imprimir Orçamento
+            </button>
+        </div>
+    </div>
+
+    <div id="modalItem" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalItem()">&times;</span>
+            <h3>Adicionar Novo Item</h3>
+            <hr>
+            <form id="formNovoItem">
+                <label>Ambiente / Título:</label>
+                <input type="text" id="novoTitulo" placeholder="Ex: Banheiro Suite" required>
+
+                <label>Descrição Detalhada:</label>
+                <input type="text" id="novoDescricao" placeholder="MDF Branco TX..." required>
+
+                <div class="flex-row">
+                    <div style="flex: 1;">
+                        <label>Qtd:</label>
+                        <input type="number" id="novoQtd" value="1" min="1" required>
+                    </div>
+                    <div style="flex: 2;">
+                        <label>Valor Unitário (R$):</label>
+                        <input type="number" id="novoValor" step="0.01" required>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; text-align: right;">
+                    <button type="button" onclick="fecharModalItem()" class="btn-secondary" style="width: auto; margin-right: 10px;">Cancelar</button>
+                    <button type="submit" class="btn-success" style="width: auto;">Salvar Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/detalhes.js"></script>
+</body>
+</html>

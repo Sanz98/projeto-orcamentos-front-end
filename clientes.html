@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Clientes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <nav style="background: #333; color: white; padding: 15px; margin-bottom: 30px;">
+        <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.2rem; font-weight: bold;">🛠️ Sistema Marcenaria</span>
+            <a href="dashboard.html" style="color: white; text-decoration: none; font-size: 0.9rem;">← Voltar ao Painel</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="flex-between">
+            <h2>Gerenciar Clientes</h2>
+            <button onclick="window.location.href='novo-cliente.html'" class="btn-success" style="width: auto;">+ Cadastrar Novo</button>
+        </div>
+        <hr>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Cliente</th>
+                    <th>Telefone</th>
+                    <th style="width: 100px; text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaClientes">
+                <tr><td colspan="3" style="text-align: center;">Carregando...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modalEditar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h3>Editar Cliente</h3>
+            <hr>
+            <form id="formEditar">
+                <input type="hidden" id="editId">
+
+                <label>Nome Completo:</label>
+                <input type="text" id="editNome" required>
+
+                <label>Telefone:</label>
+                <input type="text" id="editTelefone" required maxlength="12">
+
+                <div style="margin-top: 20px; text-align: right;">
+                    <button type="button" onclick="fecharModal()" class="btn-secondary" style="width: auto; margin-right: 10px;">Cancelar</button>
+                    <button type="submit" class="btn-primary" style="width: auto;">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/clientes.js"></script>
+</body>
+</html>

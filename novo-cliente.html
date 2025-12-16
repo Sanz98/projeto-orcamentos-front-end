@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Cliente</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container" style="max-width: 600px;">
+        <h2>Cadastrar Novo Cliente</h2>
+        <hr>
+        <form id="formCliente">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" required placeholder="Ex: Padaria do João">
+            
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" required placeholder="Ex: 11999998888" maxlength="12">
+            
+            <div class="flex-row" style="margin-top: 20px;">
+                <button type="button" onclick="window.location.href='dashboard.html'" class="btn-secondary">Cancelar</button>
+                <button type="submit" class="btn-success">Salvar Cliente</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/novo-cliente.js"></script>
+</body>
+</html>
