@@ -2,58 +2,50 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Painel - Marcenaria</title>
+    <title>Dashboard - Focco</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav style="background: #333; color: white; padding: 15px; margin-bottom: 30px;">
-        <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 1.2rem; font-weight: bold;">🛠️ Sistema Marcenaria</span>
-            <button onclick="logout()" class="btn-danger" style="width: auto; padding: 8px 15px; font-size: 0.9rem;">Sair</button>
-        </div>
-    </nav>
-
     <div class="container">
-        <div class="flex-between">
-            <h1>Meus Orçamentos</h1>
-        </div>
-        <hr>
+        <nav class="sidebar">
+            <div>
+                <h2>Focco</h2>
+                <div class="menu">
+                    <a href="dashboard.html" class="active">Dashboard</a>
+                    <a href="clientes.html">Clientes</a>
+                    <a href="equipe.html" id="menu-equipe">Equipe</a>
+                </div>
+            </div>
+            <button onclick="logout()" class="logout-btn">Sair</button>
+        </nav>
 
-        <h4 style="margin-top: 0; color: #555;">🚀 Ações Rápidas</h4>
-        <div class="flex-row" style="margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
-            
-            <button onclick="window.location.href='novo-orcamento.html'" class="btn-primary" style="flex: 1; min-width: 200px; padding: 20px; font-size: 1.1rem;">
-                + Novo Orçamento
-            </button>
+        <main class="main-content">
+            <header>
+                <h1>Visão Geral</h1>
+                <span id="user-name" style="font-weight: bold;"></span>
+            </header>
 
-            <button onclick="window.location.href='novo-cliente.html'" class="btn-success" style="flex: 1; min-width: 200px; padding: 20px; font-size: 1.1rem;">
-                + Novo Cliente
-            </button>
-        </div>
-
-        <h4 style="margin-top: 20px; color: #555;">📁 Gestão e Configurações</h4>
-        <div class="flex-row" style="margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
-            
-            <button onclick="window.location.href='clientes.html'" class="btn-info" style="flex: 1; min-width: 150px;">
-                📂 Meus Clientes
-            </button>
-
-            <button id="btnEquipe" onclick="window.location.href='equipe.html'" class="btn-secondary" style="flex: 1; min-width: 150px;">
-                ⚙️ Gerenciar Equipe
-            </button>
-        </div>
-
-        <div style="margin-bottom: 20px; display: flex; gap: 10px;">
-            <span class="status-badge status-Em.Analise">Em Análise</span>
-            <span class="status-badge status-Aprovado">Aprovados</span>
-            <span class="status-badge status-Rejeitado">Rejeitados</span>
-        </div>
-
-        <div id="containerOrcamentos" class="grid-orcamentos">
-            <p style="grid-column: 1/-1; text-align: center; color: #666;">Carregando dados...</p>
-        </div>
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>Últimos Orçamentos</h3>
+                    <a href="novo-orcamento.html" class="btn btn-primary">+ Novo Orçamento</a>
+                </div>
+                <table id="tabela-orcamentos">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Status</th>
+                            <th>Valor Total</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </main>
     </div>
-
     <script src="js/config.js"></script>
     <script src="js/dashboard.js"></script>
 </body>

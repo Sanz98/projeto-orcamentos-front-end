@@ -2,20 +2,24 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Marcenaria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Focco Interiores</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <div class="container">
-        <h2>Acesso ao Sistema</h2>
-        <form id="formLogin">
-            <input type="email" id="email" placeholder="Seu e-mail" required>
-            <input type="password" id="senha" placeholder="Sua senha" required>
-            <button type="submit">Entrar</button>
+<body class="login-body">
+    <div class="card login-card">
+        <h2>Focco Interiores</h2>
+        <p style="margin-bottom: 20px; color: #666;">Acesse o sistema</p>
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Seu e-mail" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="senha" placeholder="Sua senha" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
         </form>
-        <p id="mensagem" style="color: red; text-align: center;"></p>
     </div>
-    
     <script src="js/config.js"></script>
     <script src="js/login.js"></script>
 </body>

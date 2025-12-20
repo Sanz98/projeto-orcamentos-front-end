@@ -1,44 +1,23 @@
-// Arquivo: js/novo-cliente.js
+checkLogin();
 
-// 1. Verificação de Segurança (Token)
-const token = localStorage.getItem('token');
-if (!token) {
-    alert('Você precisa estar logado para acessar esta página.');
-    window.location.href = 'index.html';
-}
-
-// 2. Manipulação do Formulário
 document.getElementById('formCliente').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Impede a página de recarregar
+    e.preventDefault();
+    
+    const dados = {
+        nomeCliente: document.getElementById('nomeCliente').value,
+        telefoneCliente: document.getElementById('telefoneCliente').value
+    };
 
-    // Captura os dados dos inputs
-    const nome = document.getElementById('nome').value;
-    const telefone = document.getElementById('telefone').value;
+    const response = await fetchAuth('/clientes', {
+        method: 'POST',
+        body: JSON.stringify(dados)
+    });
 
-    try {
-        const res = await fetch(`${API_URL}/clientes`, {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            // Envia os dados no formato que o Back-end espera
-            body: JSON.stringify({ 
-                nomeCliente: nome, 
-                telefoneCliente: telefone 
-            })
-        });
-
-        if (res.ok) {
-            alert('Cliente salvo com sucesso!');
-            window.location.href = 'dashboard.html';
-        } else {
-            const erro = await res.json();
-            alert('Erro: ' + (erro.erro || 'Falha ao salvar'));
-        }
-
-    } catch (err) { 
-        console.error(err); 
-        alert('Erro de conexão com o servidor. Verifique se o Back-end está rodando.'); 
+    if(response.ok) {
+        alert('Cliente cadastrado!');
+        window.location.href = 'clientes.html';
+    } else {
+        const erro = await response.json();
+        alert(erro.erro || 'Erro ao cadastrar');
     }
 });
